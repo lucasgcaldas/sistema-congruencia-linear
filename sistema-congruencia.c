@@ -30,14 +30,33 @@ int MDC(int a, int b)
 void calculaMDC_N(int *num, int k)
 {
     int x = 0;
-    for (int i = 0; i < k; i++)
+    if (k == 2) 
     {
-        for (int j = 1; j <= k / 2 + 1; j++)
+        for (int i = 0; i < k; i++)
         {
-            if (i != j && i <= j)
+            for (int j = k - 1; j >= 0; j--)
             {
-                mdc_n[x] = MDC(num[i], num[j]);
-                x++;
+                if (i != j)
+                {
+                    mdc_n[x] = MDC(num[i], num[j]);
+                    // printf("opa %d\n", mdc_n[x]);
+                    x++;
+                }
+            }
+        }
+    } 
+    else 
+    {
+        for (int i = 0; i < k; i++)
+        {
+            for (int j = 1; j <= k / 2 + 1; j++)
+            {
+                if (i != j && i <= j)
+                {
+                    mdc_n[x] = MDC(num[i], num[j]);
+                    printf("opa %d\n", mdc_n[x]);
+                    x++;
+                }
             }
         }
     }
@@ -140,7 +159,7 @@ int main(void)
     {
         if (mdc_n[i] != 1 || mdc_p[i] != 1) 
         {
-            printf("OOOPAA, Sistema sem solucao amigao\n");
+            printf("OOOPAA, Por meio da TCR nao tem como resolver o sistema\n");
             return 0;
         }
     }
